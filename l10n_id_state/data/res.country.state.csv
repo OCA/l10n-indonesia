@@ -1,0 +1,36 @@
+id,country_id/id,code,name
+data_state_indonesiaAC,base.id,AC,Aceh
+data_state_indonesiaBA,base.id,BA,Bali
+data_state_indonesiaBB,base.id,BB,Bangka-Belitung
+data_state_indonesiaBE,base.id,BE,Bengkulu
+data_state_indonesiaBT,base.id,BT,Banten
+data_state_indonesiaBU,base.id,BU,Bengkulu
+data_state_indonesiaGO,base.id,GO,Gorontalo
+data_state_indonesiaJA,base.id,JA,Jambi
+data_state_indonesiaJB,base.id,JB,West Java
+data_state_indonesiaJI,base.id,JI,East Java
+data_state_indonesiaJK,base.id,JK,Jakarta
+data_state_indonesiaJT,base.id,JT,Central Java
+data_state_indonesiaKB,base.id,KB,West Kalimantan
+data_state_indonesiaKI,base.id,KI,East Kalimantan
+data_state_indonesiaKR,base.id,KR,Riau Islands
+data_state_indonesiaKS,base.id,KS,South Kalimantan
+data_state_indonesiaKT,base.id,KT,Central Kalimantan
+data_state_indonesiaKU,base.id,KU,North Kalimantan
+data_state_indonesiaLA,base.id,LA,Lampung
+data_state_indonesiaMA,base.id,MA,Maluku
+data_state_indonesiaMU,base.id,MU,North Maluku
+data_state_indonesiaNB,base.id,NB,West Nusa Tenggara
+data_state_indonesiaNT,base.id,NT,East Nusa Tenggara
+data_state_indonesiaPA,base.id,PA,Papua
+data_state_indonesiaPB,base.id,PB,West Papua
+data_state_indonesiaRI,base.id,RI,Riau
+data_state_indonesiaSA,base.id,SA,North Sulawesi
+data_state_indonesiaSB,base.id,SB,West Sumatra
+data_state_indonesiaSG,base.id,SG,Southeast Sulawesi
+data_state_indonesiaSN,base.id,SN,South Sulawesi
+data_state_indonesiaSR,base.id,SR,West Sulawesi
+data_state_indonesiaSS,base.id,SS,South Sumatra
+data_state_indonesiaST,base.id,ST,Central Sulawesi
+data_state_indonesiaSU,base.id,SU,North Sumatra
+data_state_indonesiaYO,base.id,YO,Yogyakarta
