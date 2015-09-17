@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Indonesia Localization - State Name',
-    'summary': "Indonesia's state',
+    'summary': "Indonesia's state",
     'version': '1.0',
     'author': 'OpenSynergy Indonesia',
     'website': 'https://opensynergy-indonesia.com',
