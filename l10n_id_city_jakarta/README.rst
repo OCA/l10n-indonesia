@@ -6,7 +6,7 @@
 Indonesia Localization - ZIP Code Jakarta
 =========================================
 
-This module contain Indonesia's zip code jakarta
+This module contains DKI Jakarta's zip code
 
 Installation
 ============
