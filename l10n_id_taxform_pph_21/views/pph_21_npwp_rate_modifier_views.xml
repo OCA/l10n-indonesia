@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+
+<record id="pph_21_npwp_rate_modifier_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.pph_21_npwp_rate_modifier</field>
+    <field name="model">l10n_id.pph_21_npwp_rate_modifier</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="date_start"/>
+            <field name="pph_rate_modifier"/>
+        </tree>
+    </field>
+</record>
+
+<record id="pph_21_npwp_rate_modifier_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.pph_21_npwp_rate_modifier</field>
+    <field name="model">l10n_id.pph_21_npwp_rate_modifier</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_main_1" colspan="4" col="2">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="pph_rate_modifier"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="pph_21_npwp_rate_modifier_action" model="ir.actions.act_window">
+    <field name="name">NPWP Rate Modifier</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.pph_21_npwp_rate_modifier</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="pph_21_npwp_rate_modifier_menu"
+    name="NPWP Rate Modifier"
+    parent="taxform_pph_21_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="pph_21_npwp_rate_modifier_action"/>
+
+</data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+
+<record id="pph_21_biaya_jabatan_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.pph_21_biaya_jabatan</field>
+    <field name="model">l10n_id.pph_21_biaya_jabatan</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="date_start"/>
+            <field name="rate_biaya_jabatan"/>
+            <field name="max_biaya_jabatan"/>
+        </tree>
+    </field>
+</record>
+
+<record id="pph_21_biaya_jabatan_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.pph_21_biaya_jabatan</field>
+    <field name="model">l10n_id.pph_21_biaya_jabatan</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_main_1" colspan="4" col="2">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="rate_biaya_jabatan"/>
+                <field name="max_biaya_jabatan"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="pph_21_biaya_jabatan_action" model="ir.actions.act_window">
+    <field name="name">Biaya Jabatan</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.pph_21_biaya_jabatan</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="pph_21_biaya_jabatan_menu"
+    name="Biaya Jabatan"
+    parent="taxform_pph_21_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="pph_21_biaya_jabatan_action"/>
+
+</data>
+</openerp>
