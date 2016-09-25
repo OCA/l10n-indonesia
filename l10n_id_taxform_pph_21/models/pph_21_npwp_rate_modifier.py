@@ -24,6 +24,12 @@ class Pph21NpwpRateModifier(models.Model):
         required=True,
     )
 
+    _sql_constraints = [
+        ("date_start_unique", 
+         "unique(date_start)", 
+         _("Date start has to be unique"))
+        ]
+
     @api.model
     def find(self, dt=None):
         if not dt:
