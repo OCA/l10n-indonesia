@@ -10,6 +10,7 @@ from datetime import datetime
 class Pph21NpwpRateModifier(models.Model):
     _name = "l10n_id.pph_21_npwp_rate_modifier"
     _description = "PPh 21 NPWP Rate Modifier"
+    _order = "date_start desc, id"
 
     name = fields.Char(
         string="Dasar Hukum",
