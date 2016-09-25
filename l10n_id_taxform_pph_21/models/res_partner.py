@@ -12,7 +12,7 @@ class ResPartner(models.Model):
     ptkp_category_id = fields.Many2one(
         string="PTKP Category",
         comodel_name="l10n_id.ptkp_category",
-        )
+    )
 
     @api.multi
     def compute_pph_21_2110001(

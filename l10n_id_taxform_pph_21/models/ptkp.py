@@ -48,10 +48,10 @@ class Ptkp(models.Model):
     )
 
     _sql_constraints = [
-        ("date_start_unique", 
-         "unique(date_start)", 
+        ("date_start_unique",
+         "unique(date_start)",
          _("Date start has to be unique"))
-        ]
+    ]
 
     @api.model
     def find(self, dt=None):
@@ -93,7 +93,7 @@ class PtkpLine(models.Model):
     )
 
     _sql_constraints = [
-        ("pktp_category_use_only_once", 
-         "unique(ptkp_id, ptkp_category_id)", 
+        ("pktp_category_use_only_once",
+         "unique(ptkp_id, ptkp_category_id)",
          _("PTKP category can only be used once on each PTKP"))
-        ]
+    ]
