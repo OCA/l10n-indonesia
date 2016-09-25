@@ -130,3 +130,31 @@ class Pph21RateCase(TransactionCase):
         self.assertEqual(
             pph["pph"],
             475000.0)
+
+    def test_5(self):
+        self.partner.write({"vat": "123"})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=1,
+            gaji=5000000.0
+        )
+        self.assertEqual(
+            pph["pengurang"],
+            250000.0)
+        self.assertEqual(
+            pph["netto"],
+            4750000.00)
+        self.assertEqual(
+            pph["netto_setahun"],
+            57000000.0)
+        self.assertEqual(
+            pph["ptkp"],
+            39000000)
+        self.assertEqual(
+            pph["pkp"],
+            18000000.00)
+        self.assertEqual(
+            pph["pph_setahun"],
+            900000.0)
+        self.assertEqual(
+            pph["pph"],
+            75000.0)
