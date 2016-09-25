@@ -31,6 +31,7 @@ class PtkpCategory(models.Model):
 class Ptkp(models.Model):
     _name = "l10n_id.ptkp"
     _description = "Tarif PTKP"
+    _order = "date_start desc, id"
 
     name = fields.Char(
         string="Dasar Hukum",
