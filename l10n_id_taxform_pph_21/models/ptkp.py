@@ -40,9 +40,6 @@ class Ptkp(models.Model):
         string="Tanggal Mulai Berlaku",
         required=True,
     )
-    date_end = fields.Date(
-        string="Tanggal Selesai Berlaku",
-    )
     line_ids = fields.One2many(
         string="Detail Tarif",
         comodel_name="l10n_id.ptkp_line",
