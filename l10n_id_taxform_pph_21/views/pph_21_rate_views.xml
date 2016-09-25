@@ -31,6 +31,12 @@
                     <field name="min_income"/>
                     <field name="pph_rate"/>
                 </tree>
+                <form>
+                    <group name="group_line_1" colspan="4" col="2">
+                        <field name="min_income"/>
+                        <field name="pph_rate"/>
+                    </group>
+                </form>
             </field>
         </form>
     </field>
