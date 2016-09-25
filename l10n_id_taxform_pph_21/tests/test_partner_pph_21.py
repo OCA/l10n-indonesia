@@ -11,12 +11,12 @@ class Pph21RateCase(TransactionCase):
         super(Pph21RateCase, self).setUp(*args, **kwargs)
         self.partner = self.env.ref("base.main_partner")
         self.ptkp_category = self.env.ref("l10n_id_taxform_pph_21.ptkp_k0")
+        self.partner.write({"ptkp_category_id": self.ptkp_category.id})
 
     def test_1(self):
         self.partner.write({"vat": "123"})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
-            ptkp_category=self.ptkp_category,
             gaji=5000000.0,
             jumlah_penghasilan_non_rutin=10000000.0,
             pensiun=100000.0,
@@ -47,7 +47,6 @@ class Pph21RateCase(TransactionCase):
         self.partner.write({"vat": "123"})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=2,
-            ptkp_category=self.ptkp_category,
             gaji=5000000.0,
             jumlah_penghasilan_non_rutin=10000000.0,
             pensiun=100000.0,
@@ -78,7 +77,6 @@ class Pph21RateCase(TransactionCase):
         self.partner.write({"vat": ""})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
-            ptkp_category=self.ptkp_category,
             gaji=5000000.0,
             jumlah_penghasilan_non_rutin=10000000.0,
             pensiun=100000.0,
@@ -109,7 +107,6 @@ class Pph21RateCase(TransactionCase):
         self.partner.write({"vat": "123"})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
-            ptkp_category=self.ptkp_category,
             jumlah_penghasilan_non_rutin=10000000.0,
         )
         self.assertEqual(

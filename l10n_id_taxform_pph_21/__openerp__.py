@@ -20,6 +20,7 @@
         "views/pph_21_biaya_jabatan_views.xml",
         "views/pph_21_npwp_rate_modifier_views.xml",
         "views/pph_21_rate_views.xml",
+        "views/res_partner_views.xml",
     ],
     "demo": [
         "demo/pph_21_biaya_jabatan_demo.xml",

@@ -2,17 +2,22 @@
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from openerp import models, api, fields
+from openerp.tools.translate import _
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    ptkp_category_id = fields.Many2one(
+        string="PTKP Category",
+        comodel_name="l10n_id.ptkp_category",
+        )
+
     @api.multi
     def compute_pph_21_2110001(
             self,
             bulan_bergabung=1,
-            ptkp_category=False,
             tanggal_pemotongan=False,
             gaji=0.0,
             tunjangan_pph=0.0,
@@ -20,7 +25,6 @@ class ResPartner(models.Model):
             jumlah_penghasilan_non_rutin=0.0,
             pensiun=0.0,
     ):
-        # TODO
         self.ensure_one()
         result = {
             "biaya_jabatan_rutin": 0.0,
@@ -38,6 +42,12 @@ class ResPartner(models.Model):
             "pph_setahun": 0.0,
             "pph": 0.0,
         }
+        ptkp_category = self.ptkp_category_id
+
+        if not ptkp_category:
+            raise models.ValidationError(
+                _("Partner's PTKP Category is not configured"))
+
         jumlah_penghasilan_rutin = gaji + \
             tunjangan_pph + tunjangan_lain
 
