@@ -91,3 +91,9 @@ class PtkpLine(models.Model):
         string="Tarif PTKP",
         required=True,
     )
+
+    _sql_constraints = [
+        ("pktp_category_use_only_once", 
+         "unique(ptkp_id, ptkp_category_id)", 
+         _("PTKP category can only be used once on each PTKP"))
+        ]
