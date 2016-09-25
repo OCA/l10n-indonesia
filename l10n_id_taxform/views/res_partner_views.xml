@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="res_partner_view_form" model="ir.ui.view">
+    <field name="name">form res.partner taxform information</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//notebook" position="inside">
+                <page name="page_personal_taxform_info" string="Taxform Information"
+                    groups="l10n_id_taxform.user_group_taxform,l10n_id_taxform.manager_group_taxform" 
+                    attrs="{'invisible':['|',('is_company','=',True)]}">
+                    <group name="group_personal_taxform_1" colspan="4" col="4">
+                        <field name="vat"/>
+                    </group>
+                </page>
+                <page name="page_company_taxform_info" string="Taxform Information"
+                    groups="l10n_id_taxform.user_group_taxform,l10n_id_taxform.manager_group_taxform" 
+                    attrs="{'invisible':[('is_company','=',False)]}">
+                    <group name="group_personal_taxform_2" colspan="4" col="4">
+                        <field name="vat"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </data>
+    </field>
+</record>
+
+</data>
+</openerp>
