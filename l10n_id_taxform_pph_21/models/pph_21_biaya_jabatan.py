@@ -42,7 +42,9 @@ class Pph21TunjanganJabatan(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            raise models.ValidationError(_("Wes"))
+            strWarning = _(
+                "No biaya jabatan configuration for %s" % dt)
+            raise models.ValidationError(strWarning)
         return results[0]
 
     @api.multi

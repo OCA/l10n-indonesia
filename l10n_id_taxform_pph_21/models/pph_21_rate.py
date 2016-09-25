@@ -39,7 +39,9 @@ class Pph21Rate(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            raise models.ValidationError(_("Wes"))
+            strWarning = _(
+                "No PPh 21 rate configuration for %s" % dt)
+            raise models.ValidationError(strWarning)
         return results[0]
 
     @api.multi

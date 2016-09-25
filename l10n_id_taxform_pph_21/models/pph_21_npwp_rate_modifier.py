@@ -38,7 +38,9 @@ class Pph21NpwpRateModifier(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            raise models.ValidationError(_("Wes"))
+            strWarning = _(
+                "No NPWP rate modifier configuration for %s" % dt)
+            raise models.ValidationError(strWarning)
         return results[0]
 
     @api.model
