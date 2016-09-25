@@ -10,7 +10,7 @@ from datetime import datetime
 class Pph21TunjanganJabatan(models.Model):
     _name = "l10n_id.pph_21_biaya_jabatan"
     _description = "Biaya Jabatan"
-    _order = "date_start asc, id"
+    _order = "date_start desc, id"
 
     name = fields.Char(
         string="Dasar Hukum",
