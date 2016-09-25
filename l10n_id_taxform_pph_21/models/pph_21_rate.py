@@ -61,6 +61,7 @@ class Pph21Rate(models.Model):
 class Pph21RateLine(models.Model):
     _name = "l10n_id.pph_21_rate_line"
     _description = "PPh 21 Rate Line"
+    _order = "min_income asc"
 
     rate_id = fields.Many2one(
         string="PPh 21 Rate",
