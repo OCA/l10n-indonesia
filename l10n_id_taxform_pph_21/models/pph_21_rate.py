@@ -10,6 +10,7 @@ from datetime import datetime
 class Pph21Rate(models.Model):
     _name = "l10n_id.pph_21_rate"
     _description = "PPh 21 Rate"
+    _order = "date_start desc, id"
 
     name = fields.Char(
         string="Dasar Hukum",
