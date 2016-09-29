@@ -10,11 +10,12 @@ class Pph21RateCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(Pph21RateCase, self).setUp(*args, **kwargs)
         self.partner = self.env.ref("base.main_partner")
+        self.indonesia = self.env.ref("base.id")
         self.ptkp_category = self.env.ref("l10n_id_taxform_pph_21.ptkp_k0")
         self.partner.write({"ptkp_category_id": self.ptkp_category.id})
 
     def test_1(self):
-        self.partner.write({"vat": "123"})
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
             gaji=5000000.0,
@@ -44,7 +45,7 @@ class Pph21RateCase(TransactionCase):
             557500.0)
 
     def test_2(self):
-        self.partner.write({"vat": "123"})
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=2,
             gaji=5000000.0,
@@ -74,7 +75,7 @@ class Pph21RateCase(TransactionCase):
             542727.0)
 
     def test_3(self):
-        self.partner.write({"vat": ""})
+        self.partner.write({"vat": "", "nationality_id": self.indonesia.id})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
             gaji=5000000.0,
@@ -104,7 +105,7 @@ class Pph21RateCase(TransactionCase):
             669000.0)
 
     def test_4(self):
-        self.partner.write({"vat": "123"})
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
             jumlah_penghasilan_non_rutin=10000000.0,
@@ -132,29 +133,113 @@ class Pph21RateCase(TransactionCase):
             475000.0)
 
     def test_5(self):
-        self.partner.write({"vat": "123"})
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
         pph = self.partner.compute_pph_21_2110001(
             bulan_bergabung=1,
-            gaji=5000000.0
+            gaji=10000000.0
         )
         self.assertEqual(
             pph["pengurang"],
-            250000.0)
+            500000.0)
         self.assertEqual(
             pph["netto"],
-            4750000.00)
+            9500000.0)
         self.assertEqual(
             pph["netto_setahun"],
-            57000000.0)
+            114000000.0)
         self.assertEqual(
             pph["ptkp"],
             39000000)
         self.assertEqual(
             pph["pkp"],
-            18000000.00)
+            75000000.00)
         self.assertEqual(
             pph["pph_setahun"],
-            900000.0)
+            6250000.0)
         self.assertEqual(
             pph["pph"],
-            75000.0)
+            520833.0)
+
+    def test_6(self):
+        self.partner.write({"vat": "123", "nationality_id": False})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=1,
+            gaji=10000000.0
+        )
+        self.assertEqual(
+            pph["pengurang"],
+            500000.0)
+        self.assertEqual(
+            pph["netto"],
+            9500000.0)
+        self.assertEqual(
+            pph["netto_setahun"],
+            114000000.0)
+        self.assertEqual(
+            pph["ptkp"],
+            39000000)
+        self.assertEqual(
+            pph["pkp"],
+            75000000.00)
+        self.assertEqual(
+            pph["pph_setahun"],
+            6250000.0)
+        self.assertEqual(
+            pph["pph"],
+            520833.0)
+
+    def test_7(self):
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=3,
+            gaji=10000000.0
+        )
+        self.assertEqual(
+            pph["pengurang"],
+            500000.0)
+        self.assertEqual(
+            pph["netto"],
+            9500000.0)
+        self.assertEqual(
+            pph["netto_setahun"],
+            95000000.0)
+        self.assertEqual(
+            pph["ptkp"],
+            39000000)
+        self.assertEqual(
+            pph["pkp"],
+            56000000.00)
+        self.assertEqual(
+            pph["pph_setahun"],
+            3400000.0)
+        self.assertEqual(
+            pph["pph"],
+            340000.0)
+
+    def test_8(self):
+        self.partner.write({"vat": "123", "nationality_id": False})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=3,
+            gaji=10000000.0
+        )
+        self.assertEqual(
+            pph["pengurang"],
+            500000.0)
+        self.assertEqual(
+            pph["netto"],
+            9500000.0)
+        self.assertEqual(
+            pph["netto_setahun"],
+            114000000.0)
+        self.assertEqual(
+            pph["ptkp"],
+            39000000)
+        self.assertEqual(
+            pph["pkp"],
+            75000000.00)
+        self.assertEqual(
+            pph["pph_setahun"],
+            6250000.0)
+        self.assertEqual(
+            pph["pph"],
+            520833.0)

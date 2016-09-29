@@ -43,6 +43,7 @@ class ResPartner(models.Model):
             "pph": 0.0,
         }
         ptkp_category = self.ptkp_category_id
+        indonesia = self.env.ref("base.id")
 
         if not ptkp_category:
             raise models.ValidationError(
@@ -72,9 +73,13 @@ class ResPartner(models.Model):
             biaya_jabatan_non_rutin
         netto = netto_rutin + netto_non_rutin
 
-        netto_setahun_rutin = netto_rutin * (13 - bulan_bergabung)
-        netto_setahun = netto_setahun_rutin + netto_non_rutin
 
+        if self.nationality_id == indonesia:
+            netto_setahun_rutin = netto_rutin * (13 - bulan_bergabung)
+        else:
+            netto_setahun_rutin = netto_rutin * 12
+
+        netto_setahun = netto_setahun_rutin + netto_non_rutin
         if gaji > 0.0:
             ptkp = ptkp_category.get_rate(tanggal_pemotongan)
         else:
@@ -89,7 +94,11 @@ class ResPartner(models.Model):
             tanggal_pemotongan).compute_tax(pkp_rutin)
         pph_non_rutin = pph_setahun - pph_setahun_rutin
 
-        pph_sebulan = pph_setahun_rutin / (13 - bulan_bergabung)
+        if self.nationality_id == indonesia:
+            pph_sebulan = pph_setahun_rutin / (13 - bulan_bergabung)
+        else:
+            pph_sebulan = pph_setahun_rutin / 12
+
         pph = pph_sebulan + pph_non_rutin
 
         npwp = self.vat and len(self.vat) > 0 or False
