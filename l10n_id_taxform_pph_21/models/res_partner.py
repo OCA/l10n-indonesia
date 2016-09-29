@@ -73,7 +73,6 @@ class ResPartner(models.Model):
             biaya_jabatan_non_rutin
         netto = netto_rutin + netto_non_rutin
 
-
         if self.nationality_id == indonesia:
             netto_setahun_rutin = netto_rutin * (13 - bulan_bergabung)
         else:
