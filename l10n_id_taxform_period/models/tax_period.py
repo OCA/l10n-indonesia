@@ -122,10 +122,11 @@ class TaxPeriod(models.Model):
         criteria = [
             ("date_start", ">", self.date_start)
         ]
-        results = self.search(criteria)
-        if results:
-            return results[step - 1]
-        return False
+        result = self.search(
+            criteria,
+            limit=1,
+            offset=step - 1)
+        return result
 
     @api.multi
     def _previous_period(self, step):
@@ -133,10 +134,12 @@ class TaxPeriod(models.Model):
         criteria = [
             ("date_start", "<", self.date_start)
         ]
-        results = self.search(criteria, order="date_start desc")
-        if results:
-            return results[step - 1]
-        return False
+        result = self.search(
+            criteria,
+            order="date_start desc",
+            limit=1,
+            offset=step - 1)
+        return result
 
     @api.model
     def _find_period(self, dt=None):
@@ -150,5 +153,4 @@ class TaxPeriod(models.Model):
         if not results:
             strWarning = _("No tax period configured for %s" % dt)
             raise models.ValidationError(strWarning)
-        result = results[0]
-        return result
+        return results[0]
