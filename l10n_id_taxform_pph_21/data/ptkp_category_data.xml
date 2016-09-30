@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="ptkp_tk0" model="l10n_id.ptkp_category">
+    <field name="name">TK/0</field>
+</record>
+
+<record id="ptkp_tk1" model="l10n_id.ptkp_category">
+    <field name="name">TK/1</field>
+</record>
+
+<record id="ptkp_tk2" model="l10n_id.ptkp_category">
+    <field name="name">TK/2</field>
+</record>
+
+<record id="ptkp_tk3" model="l10n_id.ptkp_category">
+    <field name="name">TK/3</field>
+</record>
+
+<record id="ptkp_k0" model="l10n_id.ptkp_category">
+    <field name="name">K/0</field>
+</record>
+
+<record id="ptkp_k1" model="l10n_id.ptkp_category">
+    <field name="name">K/1</field>
+</record>
+
+<record id="ptkp_k2" model="l10n_id.ptkp_category">
+    <field name="name">K/2</field>
+</record>
+
+<record id="ptkp_ki0" model="l10n_id.ptkp_category">
+    <field name="name">K/I/0</field>
+</record>
+
+<record id="ptkp_ki1" model="l10n_id.ptkp_category">
+    <field name="name">K/I/1</field>
+</record>
+
+<record id="ptkp_ki2" model="l10n_id.ptkp_category">
+    <field name="name">K/I/2</field>
+</record>
+
+<record id="ptkp_ki3" model="l10n_id.ptkp_category">
+    <field name="name">K/I/3</field>
+</record>
+
+<record id="ptkp_k3" model="l10n_id.ptkp_category">
+    <field name="name">K/3</field>
+</record>
+
+</data>
+</openerp>

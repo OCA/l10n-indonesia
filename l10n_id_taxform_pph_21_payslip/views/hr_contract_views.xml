@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="hr_contract_view_form" model="ir.ui.view">
+    <field name="name">hr.contract form</field>
+    <field name="model">hr.contract</field>
+    <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='struct_id']" position="after">
+            <field name="penghasilan_netto_sebelumnya"/>
+            <field name="pph_21_yang_telah_dipotong"/>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>

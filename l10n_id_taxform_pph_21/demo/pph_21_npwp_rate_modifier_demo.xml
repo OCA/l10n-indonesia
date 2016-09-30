@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="pph_21_npwp_rate_modifier0" model="l10n_id.pph_21_npwp_rate_modifier">
+    <field name="name">X NPWP Rate Modifier</field>
+    <field name="date_start" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="pph_rate_modifier" eval="120.0"/>
+</record>
+
+
+</data>
+</openerp>

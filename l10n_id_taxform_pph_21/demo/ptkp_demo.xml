@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="ptkp0" model="l10n_id.ptkp">
+    <field name="name">X PTKP</field>
+    <field name="date_start" eval="time.strftime('%Y')+'-01-01'"/>
+    <field name="date_end" eval="time.strftime('%Y')+'-12-31'"/>
+</record>
+
+<record id="ptkp_line0" model="l10n_id.ptkp_line">
+    <field name="ptkp_id" ref="ptkp0"/>
+    <field name="ptkp_category_id" ref="ptkp_k0"/>
+    <field name="ptkp_rate" eval="39000000.0"/>
+</record>
+
+<record id="ptkp_line1" model="l10n_id.ptkp_line">
+    <field name="ptkp_id" ref="ptkp0"/>
+    <field name="ptkp_category_id" ref="ptkp_k1"/>
+    <field name="ptkp_rate" eval="42000000.0"/>
+</record>
+
+<record id="ptkp_line3" model="l10n_id.ptkp_line">
+    <field name="ptkp_id" ref="ptkp0"/>
+    <field name="ptkp_category_id" ref="ptkp_k2"/>
+    <field name="ptkp_rate" eval="45000000.0"/>
+</record>
+
+<record id="ptkp_line4" model="l10n_id.ptkp_line">
+    <field name="ptkp_id" ref="ptkp0"/>
+    <field name="ptkp_category_id" ref="ptkp_k3"/>
+    <field name="ptkp_rate" eval="48000000.0"/>
+</record>
+
+</data>
+</openerp>
