@@ -34,8 +34,6 @@ class HrPayslipCase(TransactionCase):
         #     "amount_select": "fix",
         #     "amount_fix": 0.0,
         #     })
-            
-
 
         self.ptkp_categ_1 = self.env.ref(
             "l10n_id_taxform_pph_21.ptkp_k0")
@@ -72,19 +70,19 @@ class HrPayslipCase(TransactionCase):
             period,
             pph,
             test=True,
-            ):
+    ):
         payslip = self.obj_payslip.create({
             "employee_id": contract.employee_id.id,
             "contract_id": contract.id,
             "struct_id": contract.struct_id.id,
             "date_from": period.date_start,
             "date_to": period.date_end,
-            })
+        })
         payslip.compute_sheet()
         criteria = [
             ("slip_id", "=", payslip.id),
             ("salary_rule_id.category_id.id", "=", self.categ_pph.id),
-            ]
+        ]
         line = self.obj_line.search(
             criteria,
             limit=1)
@@ -101,11 +99,11 @@ class HrPayslipCase(TransactionCase):
             "vat": "7777777",
             "ptkp_category_id": self.ptkp_categ_1.id,
             "nationality_id": self.indonesia.id,
-            })
+        })
         employee = self.obj_employee.create({
-            "name" : "X Employee 1",
+            "name": "X Employee 1",
             "address_home_id": partner.id,
-            })
+        })
         contract = self.obj_contract.create({
             "name": "X Contract 1",
             "employee_id": employee.id,
@@ -113,7 +111,7 @@ class HrPayslipCase(TransactionCase):
             "date_end": False,
             "struct_id": self.struct_1.id,
             "wage": 10000000.0,
-            })
+        })
         self._create_test_payslip(contract, self.period1, -520833.0)
         self._create_test_payslip(contract, self.period2, -520833.0)
         self._create_test_payslip(contract, self.period3, -520833.0)
@@ -127,18 +125,17 @@ class HrPayslipCase(TransactionCase):
         self._create_test_payslip(contract, self.period11, -520833.0)
         self._create_test_payslip(contract, self.period12, -520833.0)
 
-
     def test_2(self):
         partner = self.obj_partner.create({
             "name": "X Partner 1",
             "vat": "7777777",
             "ptkp_category_id": self.ptkp_categ_1.id,
             "nationality_id": self.indonesia.id,
-            })
+        })
         employee = self.obj_employee.create({
-            "name" : "X Employee 1",
+            "name": "X Employee 1",
             "address_home_id": partner.id,
-            })
+        })
         contract = self.obj_contract.create({
             "name": "X Contract 1",
             "employee_id": employee.id,
@@ -146,7 +143,7 @@ class HrPayslipCase(TransactionCase):
             "date_end": False,
             "struct_id": self.struct_1.id,
             "wage": 10000000.0,
-            })
+        })
         self._create_test_payslip(contract, self.period1, -520833.0)
         self._create_test_payslip(contract, self.period2, -520833.0)
         self._create_test_payslip(contract, self.period3, -520833.0)

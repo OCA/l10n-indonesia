@@ -35,8 +35,8 @@ class HrPayslip(models.Model):
 
             if not employee.quiting_tax_year_id:
                 if datetime.strptime(
-                    payslip.tax_period_id.date_end,
-                    "%Y-%m-%d").month == 12:
+                        payslip.tax_period_id.date_end,
+                        "%Y-%m-%d").month == 12:
                     employee.realization_tax_month = 12
                 else:
                     employee.realization_tax_month = 0
