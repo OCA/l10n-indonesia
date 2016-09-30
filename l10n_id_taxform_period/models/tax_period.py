@@ -3,10 +3,11 @@
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.tools.translate import _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from openerp import models, fields, api
+from openerp.tools.translate import _
+from openerp.exceptions import Warning as UserError
 
 
 class TaxYear(models.Model):
@@ -40,7 +41,7 @@ class TaxYear(models.Model):
     def _check_range(self):
         if self.date_end <= self.date_start:
             strWarning = _("The start date must precede it's end date")
-            raise models.ValidationError(strWarning)
+            raise UserError(strWarning)
 
     @api.multi
     def action_create_period(self):
@@ -78,7 +79,7 @@ class TaxYear(models.Model):
         results = self.search(criteria)
         if not results:
             strWarning = _("No tax year configured for %s" % dt)
-            raise models.ValidationError(strWarning)
+            raise UserError(strWarning)
         result = results[0]
         return result
 
@@ -114,7 +115,7 @@ class TaxPeriod(models.Model):
     def _check_range(self):
         if self.date_end <= self.date_start:
             strWarning = _("The start date must precede it's end date")
-            raise models.ValidationError(strWarning)
+            raise UserError(strWarning)
 
     @api.multi
     def _next_period(self, step):
@@ -152,5 +153,5 @@ class TaxPeriod(models.Model):
         results = self.search(criteria)
         if not results:
             strWarning = _("No tax period configured for %s" % dt)
-            raise models.ValidationError(strWarning)
+            raise UserError(strWarning)
         return results[0]
