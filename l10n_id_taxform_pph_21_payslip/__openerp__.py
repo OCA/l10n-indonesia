@@ -16,9 +16,10 @@
         "hr_payroll",
     ],
     "data": [
-        "views/hr_payslip_views.xml",
         "data/hr_salary_rule_category_data.xml",
         "data/hr_salary_rule_data.xml",
         "data/hr_payroll_structure_data.xml",
+        "views/hr_payslip_views.xml",
+        "views/hr_contract_views.xml",
     ],
 }
