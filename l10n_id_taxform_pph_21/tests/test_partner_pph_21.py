@@ -243,3 +243,35 @@ class Pph21RateCase(TransactionCase):
         self.assertEqual(
             pph["pph"],
             520833.0)
+
+    def test_9(self):
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=1,
+            bulan_akhir=6,
+            gaji=10000000.0,
+            tunjangan_lain=40000.0,
+            pensiun=200000,
+            akumulasi_penghasilan=50200000.0,
+            akumulasi_pensiun=1000000.0,
+            pph_21_sudah_dipotong=2484167.0,
+        )
+        self.assertEqual(
+            pph["pph"],
+            -1632167.0)
+
+    def test_10(self):
+        self.partner.write({"vat": "123", "nationality_id": self.indonesia.id})
+        pph = self.partner.compute_pph_21_2110001(
+            bulan_bergabung=1,
+            bulan_akhir=12,
+            gaji=10000000.0,
+            tunjangan_lain=40000.0,
+            pensiun=200000,
+            akumulasi_penghasilan=110440000.0,
+            akumulasi_pensiun=2200000.0,
+            pph_21_sudah_dipotong=5465167.0,
+        )
+        self.assertEqual(
+            pph["pph"],
+            496833.0)
