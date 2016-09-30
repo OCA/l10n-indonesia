@@ -18,6 +18,7 @@
         </xpath>
         <xpath expr="//field[@name='struct_id']" position="after">
             <field name="joining_tax_month"/>
+            <field name="realization_tax_month"/>
         </xpath>
     </field>
 </record>

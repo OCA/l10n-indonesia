@@ -4,11 +4,20 @@
 
 <openerp>
 <data>
+<record id="salary_rule_gapok" model="hr.salary.rule">
+    <field name="name">Gaji Pokok</field>
+    <field name="code">GAPOK</field>
+    <field name="sequence" eval="1"/>
+    <field name="category_id" ref="rule_categ_gapok"/>
+    <field name="condition_select">none</field>
+    <field name="amount_select">code</field>
+    <field name="amount_python_compute">result = contract.wage</field>
+</record>
 
 <record id="salary_rule_pph" model="hr.salary.rule">
-    <field name="name">PPh</field>
-    <field name="code">PPh</field>
-    <field name="sequence" eval="100"/>
+    <field name="name">PPh Dipotong</field>
+    <field name="code">PPH1</field>
+    <field name="sequence" eval="99"/>
     <field name="category_id" ref="rule_categ_pph"/>
     <field name="condition_select">none</field>
     <field name="amount_select">code</field>
@@ -16,14 +25,20 @@
 if not employee.address_home_id:
     result = 0.0
 else:
+    akumulasi = employee.compute_akumulasi(payslip.tax_period_id)
     perhitungan_pph = employee.address_home_id.compute_pph_21_2110001(
         payslip.joining_tax_month,
+        payslip.realization_tax_month,
         payslip.date_to,
         categories.GAPOK,
         categories.TP,
         categories.TL,
         categories.PNR,
-        categories.PEN)
+        categories.PEN,
+        akumulasi['akumulasi_pendapatan'],
+        akumulasi['akumulasi_pensiun'],
+        akumulasi['pph_21_telah_dipotong'],
+        )
     result = -1.0 * perhitungan_pph['pph']</field>
 </record>
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="payroll_structure_pph_0" model="hr.payroll.structure">
+    <field name="name">Base for Indonesia Payslip</field>
+    <field name="code">PPh2100</field>
+    <field eval="[(6, 0, [ref('salary_rule_gapok'),ref('hr_payroll.hr_rule_taxable'),ref('hr_payroll.hr_rule_net')])]" name="rule_ids"/>
+    <field name="parent_id" eval="0"/>
+</record>
+
+<record id="payroll_structure_pph_1" model="hr.payroll.structure">
+    <field name="name">PPh 21 Dipotong</field>
+    <field name="code">PPh2101</field>
+    <field name="parent_id" ref="payroll_structure_pph_0"/>
+    <field eval="[(6, 0, [ref('salary_rule_pph')])]" name="rule_ids"/>    
+</record>
+
+<record id="payroll_structure_pph_2" model="hr.payroll.structure">
+    <field name="name">PPh 21 Ditanggung Perusahaan</field>
+    <field name="code">PPh2102</field>
+    <field name="parent_id" ref="payroll_structure_pph_0"/>    
+</record>
+
+<record id="payroll_strcture_pph_3" model="hr.payroll.structure">
+    <field name="name">PPh 21 Gross Up</field>
+    <field name="code">PPh2103</field>
+    <field name="parent_id" ref="payroll_structure_pph_0"/>    
+</record>
+
+</data>
+</openerp>

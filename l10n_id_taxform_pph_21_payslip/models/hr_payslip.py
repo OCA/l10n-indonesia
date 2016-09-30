@@ -33,8 +33,26 @@ class HrPayslip(models.Model):
                     employee.joining_tax_period_id.date_start,
                     "%Y-%m-%d").month
 
+            if not employee.quiting_tax_year_id:
+                if datetime.strptime(
+                    payslip.tax_period_id.date_end,
+                    "%Y-%m-%d").month == 12:
+                    employee.realization_tax_month = 12
+                else:
+                    employee.realization_tax_month = 0
+            else:
+                if employee.quiting_tax_year_id == payslip.tax_year_id:
+                    payslip.realization_tax_month = datetime.strptime(
+                        employee.quiting_tax_period_id.date_start,
+                        "%Y-%m-%d").month
+
     joining_tax_month = fields.Integer(
         string="Joining Tax Month",
+        compute="_compute_payslip_tax_period",
+        store=True,
+    )
+    realization_tax_month = fields.Integer(
+        string="Realization Tax Month",
         compute="_compute_payslip_tax_period",
         store=True,
     )
