@@ -12,7 +12,7 @@
     "application": True,
     "installable": True,
     "depends": [
-        "base",
+        "account",
     ],
     "data": [
         "security/taxform_groups.xml",
