@@ -17,6 +17,5 @@
     "data": [
         "security/taxform_groups.xml",
         "menu.xml",
-        "views/res_partner_views.xml",
     ],
 }
