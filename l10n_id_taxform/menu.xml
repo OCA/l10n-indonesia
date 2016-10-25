@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<menuitem 
+    id="taxform_main_menu"
+    name="Taxform"
+    sequence="20"
+    />
+
+<menuitem 
+    id="taxform_spt_masa_pribadi_menu"
+    name="SPT Masa Orang Pribadi"
+    sequence="1"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_spt_masa_badan_menu"
+    name="SPT Masa Badan"
+    sequence="2"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_spt_tahunan_pribadi_menu"
+    name="SPT Tahunan Orang Pribadi"
+    sequence="3"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_spt_tahunan_badan_menu"
+    name="SPT Tahunan Badan"
+    sequence="4"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_skp_stp_menu"
+    name="SKP &amp; STP"
+    sequence="5"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_ssp_menu"
+    name="Surat Setor Pajak"
+    sequence="6"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_bukti_potong_menu"
+    name="Bukti Potong"
+    sequence="7"
+    parent="taxform_main_menu"
+    />
+
+<menuitem 
+    id="taxform_bukti_potong_21_26_menu"
+    name="PPh 21 &amp; 26"
+    sequence="1"
+    parent="taxform_bukti_potong_menu"
+    />
+
+<menuitem 
+    id="taxform_formulir_lainnya_menu"
+    name="Formulir Lainnya"
+    sequence="8"
+    parent="taxform_main_menu"
+    />
+
+
+<menuitem 
+    id="taxform_configuration_menu"
+    name="Configuration"
+    sequence="99"
+    parent="taxform_main_menu"
+    />
+
+</data>
+</openerp>
