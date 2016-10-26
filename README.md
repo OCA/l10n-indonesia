@@ -6,6 +6,12 @@
 OCA Localisation for Indonesia
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_id_taxform](l10n_id_taxform/) | 8.0.1.0.0 | Indonesia's Taxform
+
 [//]: # (end addons)
 
 OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose
