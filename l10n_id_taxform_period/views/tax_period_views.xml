@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<menuitem
+    id="taxform_period_conf_menu"
+    name="Periods"
+    parent="l10n_id_taxform.taxform_configuration_menu"
+    />
+
+<record id="tax_year_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.tax_year</field>
+    <field name="model">l10n_id.tax_year</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+        </tree>
+    </field>
+</record>
+
+<record id="tax_year_view_form" model="ir.ui.view">
+    <field name="name">tree l10n_id.tax_year</field>
+    <field name="model">l10n_id.tax_year</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button name="action_create_period" type="object" string="Create Period"/>
+            </header>
+            <group name="group_main_1">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+            </group>
+            <field name="period_ids" colspan="4" nolabel="1"/>
+        </form>
+    </field>
+</record>
+
+<record id="tax_year_action" model="ir.actions.act_window">
+    <field name="name">Tax Years</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.tax_year</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="tax_year_menu"
+    name="Tax Years"
+    parent="taxform_period_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="tax_year_action"/>
+
+<record id="tax_period_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.tax_period</field>
+    <field name="model">l10n_id.tax_period</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="year_id"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+        </tree>
+    </field>
+</record>
+
+<record id="tax_period_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.tax_period</field>
+    <field name="model">l10n_id.tax_period</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_main_1" colspan="4">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="year_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="tax_period_action" model="ir.actions.act_window">
+    <field name="name">Tax Periods</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.tax_period</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="tax_period_menu"
+    name="Tax Periods"
+    parent="taxform_period_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="tax_period_action"/>
+</data>
+</openerp>

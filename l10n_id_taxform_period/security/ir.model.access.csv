@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_taxform_user_tax_period,taxform users l10n_id.taxform_period,model_l10n_id_tax_period,l10n_id_taxform.user_group_taxform,1,0,0,0
+access_taxform_manager_tax_period,taxform managers l10n_id.taxform_period,model_l10n_id_tax_period,l10n_id_taxform.manager_group_taxform,1,1,1,1
+access_taxform_user_tax_year,taxform users l10n_id.tax_year,model_l10n_id_tax_year,l10n_id_taxform.user_group_taxform,1,0,0,0
+access_taxform_manager_tax_year,taxform managers l10n_id.tax_year,model_l10n_id_tax_year,l10n_id_taxform.manager_group_taxform,1,1,1,1
