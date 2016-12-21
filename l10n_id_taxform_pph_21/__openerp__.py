@@ -12,6 +12,7 @@
     "installable": True,
     "depends": [
         "l10n_id_taxform",
+        "account",
     ],
     "data": [
         "security/ir.model.access.csv",

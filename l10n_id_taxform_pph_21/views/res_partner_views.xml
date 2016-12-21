@@ -8,11 +8,11 @@
 <record id="res_partner_view_form" model="ir.ui.view">
     <field name="name">form res.partner taxform information</field>
     <field name="model">res.partner</field>
-    <field name="inherit_id" ref="l10n_id_taxform.res_partner_view_form"/>
+    <field name="inherit_id" ref="account.view_partner_property_form"/>
     <field name="arch" type="xml">
         <data>
-            <xpath expr="//group[@name='group_taxform_1']" position="after">
-                <group name="group_personal_pph_21_info" string="PPh 21 Information" colspan="4" col="4">
+            <xpath expr="//page[@name='accounting']" position="inside">
+                <group name="group_pph_21_info" string="PPh 21 Information" colspan="4" col="4">
                     <field name="ptkp_category_id"/>
                 </group>
             </xpath>
