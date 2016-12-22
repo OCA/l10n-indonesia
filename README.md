@@ -11,6 +11,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [l10n_id_taxform](l10n_id_taxform/) | 8.0.1.0.0 | Indonesia's Taxform
+[l10n_id_taxform_period](l10n_id_taxform_period/) | 8.0.1.0.0 | Indonesia's Taxform - Tax Period
 
 [//]: # (end addons)
 
