@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     Copyright 2016 Prime Force Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<menuitem
+    id="taxform_pph_21_conf_menu"
+    name="PPh 21"
+    parent="l10n_id_taxform.taxform_configuration_menu"
+    />
+
+<record id="ptkp_category_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.ptkp_category</field>
+    <field name="model">l10n_id.ptkp_category</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="ptkp_category_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.ptkp_category</field>
+    <field name="model">l10n_id.ptkp_category</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_main_1" colspan="4" col="2">
+                <field name="name"/>
+                <field name="note"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="ptkp_category_action" model="ir.actions.act_window">
+    <field name="name">PTKP Category</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.ptkp_category</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="ptkp_category_menu"
+    name="PTKP Category"
+    parent="taxform_pph_21_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="ptkp_category_action"/>
+
+<record id="ptkp_view_tree" model="ir.ui.view">
+    <field name="name">tree l10n_id.ptkp</field>
+    <field name="model">l10n_id.ptkp</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="date_start"/>
+        </tree>
+    </field>
+</record>
+
+<record id="ptkp_view_form" model="ir.ui.view">
+    <field name="name">form l10n_id.ptkp</field>
+    <field name="model">l10n_id.ptkp</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_main_1" colspan="4" col="2">
+                <field name="name"/>
+                <field name="date_start"/>
+            </group>
+            <group name="group_main_2" string="Tarif PTKP" colspan="4" col="2">
+                <field name="line_ids" nolabel="1" mode="tree">
+                    <tree>
+                        <field name="ptkp_category_id"/>
+                        <field name="ptkp_rate"/>
+                    </tree>
+                </field>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="ptkp_action" model="ir.actions.act_window">
+    <field name="name">Tarif PTKP</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_id.ptkp</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="ptkp_menu"
+    name="Tarif PTKP"
+    parent="taxform_pph_21_conf_menu"
+    groups="l10n_id_taxform.manager_group_taxform"
+    action="ptkp_action"/>
+
+</data>
+</openerp>
