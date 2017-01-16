@@ -8,7 +8,6 @@
 <record id="pph_21_rate0" model="l10n_id.pph_21_rate">
     <field name="name">X PPh 21 Rate</field>
     <field name="date_start" eval="time.strftime('%Y')+'-01-01'"/>
-    <field name="pph_rate_modifier" eval="120.0"/>
 </record>
 
 <record id="pph_21_rate_line0" model="l10n_id.pph_21_rate_line">

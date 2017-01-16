@@ -8,7 +8,6 @@
 <record id="ptkp0" model="l10n_id.ptkp">
     <field name="name">X PTKP</field>
     <field name="date_start" eval="time.strftime('%Y')+'-01-01'"/>
-    <field name="date_end" eval="time.strftime('%Y')+'-12-31'"/>
 </record>
 
 <record id="ptkp_line0" model="l10n_id.ptkp_line">
