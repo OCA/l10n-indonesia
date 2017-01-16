@@ -3,15 +3,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-<<<<<<< HEAD
     <menuitem id="taxform_main_menu" name="Taxform" sequence="20" />
-=======
-    <menuitem
-        id="taxform_main_menu"
-        name="Taxform"
-        sequence="20"
-    />
->>>>>>> 1422ada ([IMP] l10n_id_taxform: black, isort, prettier)
 
     <menuitem
         id="taxform_spt_masa_pribadi_menu"
