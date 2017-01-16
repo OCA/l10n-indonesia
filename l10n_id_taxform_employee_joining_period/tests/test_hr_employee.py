@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.tests.common import TransactionCase
+from datetime import datetime, timedelta
 
 
 class HrEmployeeCase(TransactionCase):
@@ -15,6 +16,9 @@ class HrEmployeeCase(TransactionCase):
 
         self.period1 = self.env.ref("l10n_id_taxform_period.period_2")
         self.period2 = self.env.ref("l10n_id_taxform_period.period_7")
+        self.year = self.env.ref("l10n_id_taxform_period.data_tax_year")
+        self.date_out_of_range = (datetime.strptime(self.year.date_start, "%Y-%m-%d") + \
+            timedelta(days=-7)).strftime("%Y-%m-%d")
 
     def test_1(self):
 
@@ -42,4 +46,12 @@ class HrEmployeeCase(TransactionCase):
         self.assertEqual(
             self.employee.joining_tax_year_id,
             self.period2.year_id,
+            )
+        contract.write({
+            "date_start": self.date_out_of_range})
+        self.assertFalse(
+            self.employee.joining_tax_period_id,
+            )
+        self.assertFalse(
+            self.employee.joining_tax_year_id,
             )
