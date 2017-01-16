@@ -17,7 +17,7 @@ class HrEmployee(models.Model):
             obj_contract = self.env["hr.contract"]
             criteria = [
                 ("employee_id", "=", employee.id),
-                ]
+            ]
             contract = obj_contract.search(
                 criteria, order="date_start asc", limit=1)
             if not contract:
@@ -40,10 +40,10 @@ class HrEmployee(models.Model):
         comodel_name="l10n_id.tax_period",
         compute="_compute_tax_period",
         store=True,
-        )
+    )
     joining_tax_year_id = fields.Many2one(
         string="Joining Tax Year",
         comodel_name="l10n_id.tax_year",
         compute="_compute_tax_period",
         store=True,
-        )
+    )
