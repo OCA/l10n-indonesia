@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="hr_employee_view_form" model="ir.ui.view">
+    <field name="name">hr.employee form</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='vehicle_distance']" position="after">
+            <field name="joining_tax_period_id" groups="l10n_id_taxform.user_group_taxform,l10n_id_taxform.manager_group_taxform"/>
+            <field name="joining_tax_year_id" groups="l10n_id_taxform.user_group_taxform,l10n_id_taxform.manager_group_taxform"/>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>
