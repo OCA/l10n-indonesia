@@ -11,6 +11,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [l10n_id_taxform](l10n_id_taxform/) | 8.0.1.0.0 | Indonesia's Taxform
+[l10n_id_taxform_employee_joining_period](l10n_id_taxform_employee_joining_period/) | 8.0.1.0.0 | Indonesia - Employee's Joining Time Based on Tax Period
 [l10n_id_taxform_period](l10n_id_taxform_period/) | 8.0.1.0.0 | Indonesia's Taxform - Tax Period
 [l10n_id_taxform_pph_21](l10n_id_taxform_pph_21/) | 8.0.1.0.0 | Indonesia's PPh 21 Taxform Related Configuration and Computation
 
