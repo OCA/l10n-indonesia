@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="rule_categ_gapok" model="hr.salary.rule.category">
+    <field name="name">Gaji/Pensiunan Atau THT/JHT</field>
+    <field name="code">GAPOK</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>
+</record>
+
+<record id="rule_categ_tunjangan_pph" model="hr.salary.rule.category">
+    <field name="name">Tunjangan PPh</field>
+    <field name="code">TP</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+<record id="rule_categ_tunjangan_lain" model="hr.salary.rule.category">
+    <field name="name">Tunjangan Lainnya</field>
+    <field name="code">TL</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+<record id="rule_categ_non_rutin" model="hr.salary.rule.category">
+    <field name="name">Penghasilan Non-Rutin</field>
+    <field name="code">PNR</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+<record id="rule_categ_pensiun" model="hr.salary.rule.category">
+    <field name="name">Pensiun</field>
+    <field name="code">PEN</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+<record id="rule_categ_pph" model="hr.salary.rule.category">
+    <field name="name">PPh</field>
+    <field name="code">PPh</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+<record id="rule_categ_sebelum_pph" model="hr.salary.rule.category">
+    <field name="name">Sebelum PPh</field>
+    <field name="code">BP</field>
+    <field name="parent_id" ref="hr_payroll.BASIC"/>    
+</record>
+
+</data>
+</openerp>
