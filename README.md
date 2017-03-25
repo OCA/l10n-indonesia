@@ -6,6 +6,7 @@
 OCA Localisation for Indonesia
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
