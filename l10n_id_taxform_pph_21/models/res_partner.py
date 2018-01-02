@@ -4,6 +4,7 @@
 
 from openerp import models, api, fields
 from openerp.tools.translate import _
+from math import floor
 
 
 class ResPartner(models.Model):
@@ -80,8 +81,8 @@ class ResPartner(models.Model):
         else:
             ptkp = 0.0
 
-        pkp = netto_setahun - ptkp
-        pkp_rutin = netto_setahun_rutin - ptkp
+        pkp = int((netto_setahun - ptkp) / 1000.00) * 1000.00
+        pkp_rutin = int((netto_setahun_rutin - ptkp) / 1000.00) * 1000.00
 
         obj_pph = self.env["l10n_id.pph_21_rate"]
         pph_setahun = obj_pph.find(tanggal_pemotongan).compute_tax(pkp)
@@ -96,7 +97,10 @@ class ResPartner(models.Model):
         if not npwp:
             obj_multiplier = self.env["l10n_id.pph_21_npwp_rate_modifier"]
             pph = (obj_multiplier.get_rate(tanggal_pemotongan) / 100.00) * pph
-        pph = float(int(pph))
+        if not npwp:
+            pph = float(int(pph))
+        else:
+            pph = round(pph)
 
         result["biaya_jabatan_rutin"] = biaya_jabatan_rutin
         result["biaya_jabatan_non_rutin"] = biaya_jabatan_non_rutin
