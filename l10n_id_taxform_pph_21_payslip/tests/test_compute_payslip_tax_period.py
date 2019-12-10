@@ -93,7 +93,9 @@ class TestComputePayslipTaxPeriod(TransactionCase):
         vals = {
             'employee_id': self.employee.id,
             'contract_id': self.contract.id,
-            'struct_id': self.struct.id
+            'struct_id': self.struct.id,
+            'date_start': time.strftime('%Y')+'03-01',
+            'date_end': time.strftime('%Y')+'-12-31',
         }
         new = self.obj_payslip.create(vals)
 
