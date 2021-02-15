@@ -5,8 +5,9 @@
     "name": "Indonesia's PPh 21 Taxform Related Configuration and Computation",
     "version": "8.0.1.0.1",
     "category": "localization",
-    "website": "https://opensynergy-indonesia.com/",
+    "website": "https://simetri-sinergi.id",
     "author": "OpenSynergy Indonesia,"
+              "PT. Simetri Sinergi Indonesia,"    
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,

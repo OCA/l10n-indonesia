@@ -5,8 +5,9 @@
     "name": "Indonesia - Employee's Joining Time Based on Tax Period",
     "version": "8.0.1.0.0",
     "category": "localization",
-    "website": "https://opensynergy-indonesia.com/",
+    "website": "https://simetri-sinergi.id",
     "author": "OpenSynergy Indonesia,"
+              "PT. Simetri Sinergi Indonesia,"    
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
