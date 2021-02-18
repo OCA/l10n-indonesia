@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016 OpenSynergy Indonesia
+# Copyright 2020 OpenSynergy Indonesia
+# Copyright 2021 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# pylint: disable=locally-disabled, manifest-required-author
 {
     "name": "Indonesia's PPh 21 Taxform Related Configuration and Computation",
-    "version": "8.0.1.0.1",
+    "version": "8.0.1.1.0",
     "category": "localization",
     "website": "https://simetri-sinergi.id",
-    "author": "OpenSynergy Indonesia,"
-              "PT. Simetri Sinergi Indonesia,"    
-              "Odoo Community Association (OCA)",
+    "author": "PT. Simetri Sinergi Indonesia,OpenSynergy Indonesia,"
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": [
@@ -29,5 +29,5 @@
         "demo/pph_21_npwp_rate_modifier_demo.xml",
         "demo/pph_21_rate_demo.xml",
         "demo/ptkp_demo.xml",
-    ]
+    ],
 }

@@ -1,16 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    @api.depends(
-        "contract_ids",
-        "contract_ids.date_start")
+    @api.depends("contract_ids", "contract_ids.date_start")
     @api.multi
     def _compute_tax_period(self):
         for employee in self:
@@ -18,8 +15,7 @@ class HrEmployee(models.Model):
             criteria = [
                 ("employee_id", "=", employee.id),
             ]
-            contract = obj_contract.search(
-                criteria, order="date_start asc", limit=1)
+            contract = obj_contract.search(criteria, order="date_start asc", limit=1)
             if not contract:
                 employee.joining_tax_period_id = False
                 employee.joining_tax_year_id = False
@@ -27,11 +23,10 @@ class HrEmployee(models.Model):
 
             try:
                 obj_period = self.env["l10n_id.tax_period"]
-                period = obj_period._find_period(
-                    contract.date_start)
+                period = obj_period._find_period(contract.date_start)
                 employee.joining_tax_period_id = period
                 employee.joining_tax_year_id = period.year_id
-            except:
+            except Exception:
                 employee.joining_tax_period_id = False
                 employee.joining_tax_year_id = False
 

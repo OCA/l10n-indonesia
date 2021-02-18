@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
 from datetime import datetime
+
+from openerp import api, fields, models
 
 
 class HrPayslip(models.Model):
@@ -19,7 +19,7 @@ class HrPayslip(models.Model):
                 period = obj_period._find_period(payslip.date_to)
                 payslip.tax_period_id = period
                 payslip.tax_year_id = period.year_id
-            except:
+            except Exception:
                 payslip.tax_period_id = False
                 payslip.tax_year_id = False
                 continue
@@ -30,8 +30,8 @@ class HrPayslip(models.Model):
             employee = payslip.employee_id
             if employee.joining_tax_year_id == payslip.tax_year_id:
                 payslip.joining_tax_month = datetime.strptime(
-                    employee.joining_tax_period_id.date_start,
-                    "%Y-%m-%d").month
+                    employee.joining_tax_period_id.date_start, "%Y-%m-%d"
+                ).month
 
     joining_tax_month = fields.Integer(
         string="Joining Tax Month",

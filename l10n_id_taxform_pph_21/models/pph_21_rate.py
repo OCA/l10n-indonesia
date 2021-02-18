@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.tools.translate import _
 from datetime import datetime
+
+from openerp import api, fields, models
+from openerp.tools.translate import _
 
 
 class Pph21Rate(models.Model):
@@ -27,9 +27,7 @@ class Pph21Rate(models.Model):
     )
 
     _sql_constraints = [
-        ("date_start_unique",
-         "unique(date_start)",
-         _("Date start has to be unique"))
+        ("date_start_unique", "unique(date_start)", _("Date start has to be unique"))
     ]
 
     @api.model
@@ -39,8 +37,7 @@ class Pph21Rate(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            strWarning = _(
-                "No PPh 21 rate configuration for %s" % dt)
+            strWarning = _("No PPh 21 rate configuration for %s" % dt)
             raise models.ValidationError(strWarning)
         return results[0]
 
@@ -54,9 +51,7 @@ class Pph21Rate(models.Model):
             else:
                 next_line = False
 
-            result += self.line_ids[line].compute_tax(
-                penghasilan_kena_pajak,
-                next_line)
+            result += self.line_ids[line].compute_tax(penghasilan_kena_pajak, next_line)
         return result
 
 
@@ -90,6 +85,5 @@ class Pph21RateLine(models.Model):
                 if penghasilan_kena_pajak >= next_line.min_income:
                     result = pph_rate * next_line.min_income
                 else:
-                    result = pph_rate * \
-                        (penghasilan_kena_pajak - self.min_income)
+                    result = pph_rate * (penghasilan_kena_pajak - self.min_income)
         return result

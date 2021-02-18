@@ -94,6 +94,7 @@ Contributors
 ------------
 
 * Andhitia Rama <andhitia.r@gmail.com>
+* Nur Azmi <azmimr67@gmail.com>
 
 Maintainer
 ----------
