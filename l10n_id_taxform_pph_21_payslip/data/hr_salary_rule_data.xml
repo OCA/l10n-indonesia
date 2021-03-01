@@ -1,21 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <openerp>
 <data>
 
 <record id="salary_rule_pph" model="hr.salary.rule">
     <field name="name">PPh</field>
     <field name="code">PPh</field>
-    <field name="sequence" eval="100"/>
-    <field name="category_id" ref="rule_categ_pph"/>
+    <field name="sequence" eval="100" />
+    <field name="category_id" ref="rule_categ_pph" />
     <field name="condition_select">none</field>
     <field name="amount_select">code</field>
-    <field name="amount_python_compute">
+    <field
+                name="amount_python_compute"
+            ><![CDATA[
 if not employee.address_home_id:
     result = 0.0
 else:
+    akumulasi_penghasilan_non_rutin=0.0
+    akumulasi_pensiun=0.0
+    akumulasi_tunjangan_lain=0.0
+    akumulasi_tunjangan_pph=0.0
+    akumulasi_gaji=0.0
+    akumulasi_pph_yang_disetor=0.0
+    is_lokal = False
+    is_keluar = False
+
+    if employee.country_id and employee.country_id.id != payslip.company_id.country_id.id and employee.country_id_code != "ID":
+	is_lokal = True
+    elif not employee.country_id:
+       is_lokal = True
+
+    if employee.date_termination:
+	   if employee.date_termination >= payslip.date_from and employee.date_termination <= payslip.date_to:
+	      is_keluar = True
+
+    env = employee.env
+    obj_payslip_line = env["hr.payslip.line"]
+    obj_tax_period = env["l10n_id.tax_period"]
+    criteria_period = [
+        ("year_id", "=", payslip.tax_year_id.id),
+	    ("date_end", "<=", payslip.tax_period_id.date_end),
+    ]
+    periods = obj_tax_period.search(criteria_period)
+    non_rutin = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_non_rutin")
+    criteria_non_rutin = [
+        ("slip_id.employee_id.id", "=", employee.id),
+	    ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+	    ("slip_id.tax_period_id.id", "in", periods.ids),
+	    ("category_id.id", "child_of", non_rutin.id),
+    ]
+    for non_rutin1 in obj_payslip_line.search(criteria_non_rutin):
+        akumulasi_penghasilan_non_rutin = akumulasi_penghasilan_non_rutin + non_rutin1.amount
+
+    tunjangan_lain = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_tunjangan_lain")
+    criteria_tunjangan_lain = [
+        ("slip_id.employee_id.id", "=", employee.id),
+	    ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+	    ("slip_id.tax_period_id.id", "in", periods.ids),
+	    ("category_id.id", "child_of", tunjangan_lain.id),
+    ]
+    for tunjangan_lain1 in obj_payslip_line.search(criteria_tunjangan_lain):
+        akumulasi_tunjangan_lain = akumulasi_tunjangan_lain + tunjangan_lain1.amount
+
+    pensiun = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_pensiun")
+    criteria_pensiun = [
+        ("slip_id.employee_id.id", "=", employee.id),
+	    ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+        ("slip_id.tax_period_id.id", "in", periods.ids),
+        ("category_id.id", "child_of", pensiun.id),
+    ]
+    for pensiun1 in obj_payslip_line.search(criteria_pensiun):
+        akumulasi_pensiun = akumulasi_pensiun + pensiun1.amount
+
+    tunjangan_pph = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_tunjangan_pph")
+    criteria_tunjangan_pph = [
+        ("slip_id.employee_id.id", "=", employee.id),
+        ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+        ("slip_id.tax_period_id.id", "in", periods.ids),
+        ("category_id.id", "child_of", tunjangan_pph.id),
+    ]
+    for tunjangan_pph1 in obj_payslip_line.search(criteria_tunjangan_pph):
+        akumulasi_tunjangan_pph = akumulasi_tunjangan_pph + tunjangan_pph1.amount
+
+    gapok = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_gapok")
+    criteria_gapok = [
+        ("slip_id.employee_id.id", "=", employee.id),
+        ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+        ("slip_id.tax_period_id.id", "in", periods.ids),
+        ("category_id.id", "child_of", gapok.id),
+    ]
+    for gapok1 in obj_payslip_line.search(criteria_gapok):
+        akumulasi_gaji = akumulasi_gaji + gapok1.amount
+
+    pph_setor = env.ref("l10n_id_taxform_pph_21_payslip.rule_categ_pph")
+    criteria_pph_setor = [
+        ("slip_id.employee_id.id", "=", employee.id),
+        ("slip_id.tax_year_id.id", "=", payslip.tax_year_id.id),
+        ("slip_id.tax_period_id.id", "in", periods.ids),
+        ("category_id.id", "child_of", pph_setor.id),
+    ]
+    for pph_setor1 in obj_payslip_line.search(criteria_pph_setor):
+        akumulasi_pph_yang_disetor = akumulasi_pph_yang_disetor + (-1*pph_setor1.amount)
+
     perhitungan_pph = employee.address_home_id.compute_pph_21_2110001(
         payslip.joining_tax_month,
         payslip.date_to,
@@ -23,10 +110,17 @@ else:
         categories.TP,
         categories.TL,
         categories.PNR,
-        categories.PEN)
-    result = -1.0 * perhitungan_pph['pph']</field>
+        categories.PEN,
+        akumulasi_penghasilan_non_rutin,
+        akumulasi_pensiun,
+        akumulasi_tunjangan_lain,
+        akumulasi_tunjangan_pph,
+        akumulasi_gaji,
+        akumulasi_pph_yang_disetor,
+        is_keluar,
+        is_lokal,)
+    result = -1.0 * perhitungan_pph['pph']]]></field>
 </record>
-
 
 </data>
 </openerp>
