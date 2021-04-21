@@ -4,7 +4,7 @@
 # pylint: disable=locally-disabled, manifest-required-author
 {
     "name": "Indonesia's PPh 21 Taxform Related Configuration and Computation",
-    "version": "8.0.1.1.0",
+    "version": "8.0.1.1.1",
     "category": "localization",
     "website": "https://simetri-sinergi.id",
     "author": "PT. Simetri Sinergi Indonesia,OpenSynergy Indonesia,"

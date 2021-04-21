@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -48,10 +49,11 @@ class Pph21TunjanganJabatan(models.Model):
     def get_biaya_jabatan_rutin(self, jumlah_penghasilan_rutin=0.0, is_keluar=False):
         self.ensure_one()
         multiply = (self.rate_biaya_jabatan / 100.00) * jumlah_penghasilan_rutin
+        maximum_jabatan = self.max_biaya_jabatan
         if is_keluar:
-            self.max_biaya_jabatan = 12 * self.max_biaya_jabatan
-        if multiply >= self.max_biaya_jabatan:
-            result = self.max_biaya_jabatan
+            maximum_jabatan = 12 * self.max_biaya_jabatan
+        if multiply >= maximum_jabatan:
+            result = maximum_jabatan
         else:
             result = multiply
 
@@ -63,8 +65,11 @@ class Pph21TunjanganJabatan(models.Model):
     ):
         self.ensure_one()
         multiply = (self.rate_biaya_jabatan / 100.0) * jumlah_penghasilan_non_rutin
-        if multiply + biaya_jabatan_rutin >= self.max_biaya_jabatan:
-            result = self.max_biaya_jabatan - biaya_jabatan_rutin
+        maximum_jabatan = self.max_biaya_jabatan
+        if is_keluar:
+            maximum_jabatan = 12 * self.max_biaya_jabatan
+        if multiply + biaya_jabatan_rutin >= maximum_jabatan:
+            result = maximum_jabatan - biaya_jabatan_rutin
         else:
             result = multiply
         return result
