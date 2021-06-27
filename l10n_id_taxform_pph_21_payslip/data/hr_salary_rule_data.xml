@@ -122,5 +122,16 @@ else:
     result = -1.0 * perhitungan_pph['pph']]]></field>
 </record>
 
+<record id="salary_rule_tunjangan_pph" model="hr.salary.rule">
+    <field name="name">Tunjangan PPh</field>
+    <field name="code">TUNJPPh</field>
+    <field name="sequence" eval="100" />
+    <field name="category_id" ref="rule_categ_tunjangan_pph" />
+    <field name="condition_select">none</field>
+    <field name="amount_select">code</field>
+    <field name="amount_python_compute"><![CDATA[
+    result = 0.0 ]]></field>
+</record>
+
 </data>
 </openerp>

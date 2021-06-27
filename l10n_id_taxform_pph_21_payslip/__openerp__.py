@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Indonesia's Taxform - PPh 21 Computation On Payslip",
-    "version": "8.0.1.1.0",
+    "version": "8.0.1.2.0",
     "category": "localization",
     "website": "https://simetri-sinergi.id",
     "author": "OpenSynergy Indonesia,"
