@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <openerp>
 <data>
 
 <record id="salary_rule_pph" model="hr.salary.rule">
     <field name="name">PPh</field>
     <field name="code">PPh</field>
-    <field name="sequence" eval="100"/>
-    <field name="category_id" ref="rule_categ_pph"/>
+    <field name="sequence" eval="100" />
+    <field name="category_id" ref="rule_categ_pph" />
     <field name="condition_select">none</field>
     <field name="amount_select">code</field>
     <field name="amount_python_compute">
@@ -27,6 +26,16 @@ else:
     result = -1.0 * perhitungan_pph['pph']</field>
 </record>
 
+<record id="salary_rule_tunjangan_pph" model="hr.salary.rule">
+    <field name="name">Tunjangan PPh</field>
+    <field name="code">TUNJPPh</field>
+    <field name="sequence" eval="100" />
+    <field name="category_id" ref="rule_categ_tunjangan_pph" />
+    <field name="condition_select">none</field>
+    <field name="amount_select">code</field>
+    <field name="amount_python_compute">
+    result = 0.0 </field>
+</record>
 
 </data>
 </openerp>
