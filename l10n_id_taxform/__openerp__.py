@@ -6,8 +6,7 @@
     "version": "8.0.1.0.0",
     "category": "localization",
     "website": "https://opensynergy-indonesia.com",
-    "author": "OpenSynergy Indonesia,"
-              "Odoo Community Association (OCA)",
+    "author": "OpenSynergy Indonesia," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": True,
     "installable": True,
