@@ -3,8 +3,7 @@
      Copyright 2016 Prime Force Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 <menuitem
     id="taxform_pph_21_conf_menu"
@@ -97,5 +96,4 @@
     groups="l10n_id_taxform.manager_group_taxform"
     action="ptkp_action"/>
 
-</data>
-</openerp>
+</odoo>

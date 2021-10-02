@@ -2,8 +2,7 @@
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="pph_21_npwp_rate_modifier0" model="l10n_id.pph_21_npwp_rate_modifier">
     <field name="name">X NPWP Rate Modifier</field>
@@ -12,5 +11,4 @@
 </record>
 
 
-</data>
-</openerp>
+</odoo>

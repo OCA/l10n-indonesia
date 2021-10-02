@@ -2,8 +2,7 @@
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="pph_21_rate0" model="l10n_id.pph_21_rate">
     <field name="name">X PPh 21 Rate</field>
@@ -33,5 +32,4 @@
     <field name="min_income" eval="5000000000.0"/>
     <field name="pph_rate" eval="30.0"/>
 </record>
-</data>
-</openerp>
+</odoo>

@@ -2,8 +2,7 @@
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 
 <record id="pph_21_rate_view_tree" model="ir.ui.view">
@@ -57,5 +56,4 @@
     groups="l10n_id_taxform.manager_group_taxform"
     action="pph_21_rate_action"/>
 
-</data>
-</openerp>
+</odoo>

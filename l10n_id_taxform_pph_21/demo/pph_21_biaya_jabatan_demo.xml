@@ -2,8 +2,7 @@
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="pph_21_biaya_jabatan" model="l10n_id.pph_21_biaya_jabatan">
     <field name="name">X Biaya Jabatan</field>
@@ -13,5 +12,4 @@
 </record>
 
 
-</data>
-</openerp>
+</odoo>

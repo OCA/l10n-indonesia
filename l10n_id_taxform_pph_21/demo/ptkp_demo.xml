@@ -2,8 +2,7 @@
 <!-- Copyright 2016 OpenSynergy Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="ptkp0" model="l10n_id.ptkp">
     <field name="name">X PTKP</field>
@@ -34,5 +33,4 @@
     <field name="ptkp_rate" eval="48000000.0"/>
 </record>
 
-</data>
-</openerp>
+</odoo>

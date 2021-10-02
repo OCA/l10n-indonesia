@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api, fields
-from openerp.tools.translate import _
+from odoo import models, api, fields
+from odoo.tools.translate import _
 
 
 class ResPartner(models.Model):
