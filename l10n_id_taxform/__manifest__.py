@@ -14,6 +14,6 @@
     ],
     "data": [
         "security/taxform_groups.xml",
-        "menu.xml",
+        "views/menu.xml",
     ],
 }
