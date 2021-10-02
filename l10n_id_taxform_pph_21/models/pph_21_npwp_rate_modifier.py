@@ -26,9 +26,11 @@ class Pph21NpwpRateModifier(models.Model):
     )
 
     _sql_constraints = [
-        ("date_start_unique",
-         "unique(date_start)",
-         _("Date start has to be unique"))
+        (
+            "date_start_unique",
+            "unique(date_start)",
+            _("Date start has to be unique"),
+        )
     ]
 
     @api.model
@@ -38,8 +40,7 @@ class Pph21NpwpRateModifier(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            strWarning = _(
-                "No NPWP rate modifier configuration for %s" % dt)
+            strWarning = _("No NPWP rate modifier configuration for %s" % dt)
             raise models.ValidationError(strWarning)
         return results[0]
 

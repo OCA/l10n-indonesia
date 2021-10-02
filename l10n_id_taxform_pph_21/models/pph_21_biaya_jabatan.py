@@ -30,9 +30,11 @@ class Pph21TunjanganJabatan(models.Model):
     )
 
     _sql_constraints = [
-        ("date_start_unique",
-         "unique(date_start)",
-         _("Date start has to be unique"))
+        (
+            "date_start_unique",
+            "unique(date_start)",
+            _("Date start has to be unique"),
+        )
     ]
 
     @api.model
@@ -42,19 +44,18 @@ class Pph21TunjanganJabatan(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            strWarning = _(
-                "No biaya jabatan configuration for %s" % dt)
+            strWarning = _("No biaya jabatan configuration for %s" % dt)
             raise models.ValidationError(strWarning)
         return results[0]
 
     @api.multi
     def get_biaya_jabatan_rutin(
-            self,
-            jumlah_penghasilan_rutin=0.0,
-            tanggal_pemotongan=False):
+        self, jumlah_penghasilan_rutin=0.0, tanggal_pemotongan=False
+    ):
         self.ensure_one()
-        multiply = (self.rate_biaya_jabatan / 100.00) * \
-            jumlah_penghasilan_rutin
+        multiply = (
+            self.rate_biaya_jabatan / 100.00
+        ) * jumlah_penghasilan_rutin
         if multiply >= self.max_biaya_jabatan:
             result = self.max_biaya_jabatan
         else:
@@ -64,13 +65,15 @@ class Pph21TunjanganJabatan(models.Model):
 
     @api.multi
     def get_biaya_jabatan_non_rutin(
-            self,
-            jumlah_penghasilan_non_rutin=0.0,
-            biaya_jabatan_rutin=0.0,
-            tanggal_pemotongan=False):
+        self,
+        jumlah_penghasilan_non_rutin=0.0,
+        biaya_jabatan_rutin=0.0,
+        tanggal_pemotongan=False,
+    ):
         self.ensure_one()
-        multiply = (self.rate_biaya_jabatan / 100.00) * \
-            jumlah_penghasilan_non_rutin
+        multiply = (
+            self.rate_biaya_jabatan / 100.00
+        ) * jumlah_penghasilan_non_rutin
         if multiply + biaya_jabatan_rutin >= self.max_biaya_jabatan:
             result = self.max_biaya_jabatan - biaya_jabatan_rutin
         else:
@@ -80,10 +83,11 @@ class Pph21TunjanganJabatan(models.Model):
 
     @api.multi
     def get_biaya_jabatan(
-            self,
-            jumlah_penghasilan_rutin=0.0,
-            jumlah_penghasilan_non_rutin=0.0,
-            tanggal_pemotongan=False):
+        self,
+        jumlah_penghasilan_rutin=0.0,
+        jumlah_penghasilan_non_rutin=0.0,
+        tanggal_pemotongan=False,
+    ):
         # TODO:
         self.ensure_one()
         result = {
@@ -92,14 +96,14 @@ class Pph21TunjanganJabatan(models.Model):
             "biaya_jabatan": 0.0,
         }
         biaya_jabatan_rutin = self.get_biaya_jabatan_rutin(
-            jumlah_penghasilan_rutin,
-            tanggal_pemotongan)
+            jumlah_penghasilan_rutin, tanggal_pemotongan
+        )
         biaya_jabatan_non_rutin = self.get_biaya_jabatan_non_rutin(
             jumlah_penghasilan_non_rutin,
             biaya_jabatan_rutin,
-            tanggal_pemotongan)
+            tanggal_pemotongan,
+        )
         result["biaya_jabatan_rutin"] = biaya_jabatan_rutin
         result["biaya_jabatan_non_rutin"] = biaya_jabatan_non_rutin
-        result["biaya_jabatan"] = biaya_jabatan_rutin + \
-            biaya_jabatan_non_rutin
+        result["biaya_jabatan"] = biaya_jabatan_rutin + biaya_jabatan_non_rutin
         return result

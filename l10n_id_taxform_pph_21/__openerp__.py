@@ -6,8 +6,7 @@
     "version": "8.0.1.0.0",
     "category": "localization",
     "website": "https://opensynergy-indonesia.com/",
-    "author": "OpenSynergy Indonesia,"
-              "Odoo Community Association (OCA)",
+    "author": "OpenSynergy Indonesia," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": [
@@ -28,5 +27,5 @@
         "demo/pph_21_npwp_rate_modifier_demo.xml",
         "demo/pph_21_rate_demo.xml",
         "demo/ptkp_demo.xml",
-    ]
+    ],
 }
