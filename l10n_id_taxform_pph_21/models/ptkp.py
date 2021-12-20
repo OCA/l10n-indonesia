@@ -1,10 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.tools.translate import _
 from datetime import datetime
+
+from odoo import api, fields, models
+
+# from openerp.tools.translate import _
 
 
 class PtkpCategory(models.Model):
@@ -19,7 +20,7 @@ class PtkpCategory(models.Model):
         string="Additional Note",
     )
 
-    @api.multi
+    # @api.multi
     def get_rate(self, dt=None):
         self.ensure_one()
         obj_ptkp = self.env["l10n_id.ptkp"]
@@ -48,9 +49,7 @@ class Ptkp(models.Model):
     )
 
     _sql_constraints = [
-        ("date_start_unique",
-         "unique(date_start)",
-         _("Date start has to be unique"))
+        ("date_start_unique", "unique(date_start)", ("Date start has to be unique"))
     ]
 
     @api.model
@@ -60,18 +59,18 @@ class Ptkp(models.Model):
         criteria = [("date_start", "<=", dt)]
         results = self.search(criteria, limit=1)
         if not results:
-            strWarning = _(
-                "No PTKP rate configuration for %s" % dt)
+            strWarning = "No PTKP rate configuration for %s" % dt
             raise models.ValidationError(strWarning)
         return results[0]
 
-    @api.multi
+    # @api.multi
     def get_rate(self, ptkp_category):
         self.ensure_one()
         lines = self.line_ids.filtered(
-            lambda r: r.ptkp_category_id.id == ptkp_category.id)
+            lambda r: r.ptkp_category_id.id == ptkp_category.id
+        )
         if not lines:
-            raise models.ValidationError(_("Wes"))
+            raise models.ValidationError(_("Wes"))  # noqa
         return lines[0].ptkp_rate
 
 
@@ -95,7 +94,9 @@ class PtkpLine(models.Model):
     )
 
     _sql_constraints = [
-        ("pktp_category_use_only_once",
-         "unique(ptkp_id, ptkp_category_id)",
-         _("PTKP category can only be used once on each PTKP"))
+        (
+            "pktp_category_use_only_once",
+            "unique(ptkp_id, ptkp_category_id)",
+            ("PTKP category can only be used once on each PTKP"),
+        )
     ]
