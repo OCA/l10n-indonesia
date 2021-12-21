@@ -3,7 +3,7 @@
 
 from datetime import datetime, timedelta
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class HrEmployeeCase(TransactionCase):
