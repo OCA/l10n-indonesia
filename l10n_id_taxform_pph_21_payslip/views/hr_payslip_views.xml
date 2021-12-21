@@ -7,7 +7,7 @@
 <record id="hr_payslip_view_form" model="ir.ui.view">
     <field name="name">hr.payslip form</field>
     <field name="model">hr.payslip</field>
-    <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+    <field name="inherit_id" ref="payroll.view_hr_payslip_form" />
     <field name="arch" type="xml">
         <xpath expr="//field[@name='contract_id']" position="after">
             <field name="tax_year_id" />
