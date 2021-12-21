@@ -52,12 +52,12 @@ class TaxYear(models.Model):
     def _create_period(self):
         self.ensure_one()
         obj_period = self.env["l10n_id.tax_period"]
-        date_start = datetime.strptime(self.date_start, "%Y-%m-%d")
+        date_start = datetime.strptime(str(self.date_start), "%Y-%m-%d")
         while date_start.strftime("%Y-%m-%d") < self.date_end:
             date_end = date_start + relativedelta(months=+1, days=-1)
 
             if date_end.strftime("%Y-%m-%d") > self.date_end:
-                date_end = datetime.strptime(self.date_end, "%Y-%m-%d")
+                date_end = datetime.strptime(str(self.date_end), "%Y-%m-%d")
 
             obj_period.create(
                 {

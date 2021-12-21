@@ -20,7 +20,8 @@ class HrEmployeeCase(TransactionCase):
         self.period2 = self.env.ref("l10n_id_taxform_period.period_7")
         self.year = self.env.ref("l10n_id_taxform_period.data_tax_year")
         self.date_out_of_range = (
-            datetime.strptime(self.year.date_start, "%Y-%m-%d") + timedelta(days=-7)
+            datetime.strptime(str(self.year.date_start), "%Y-%m-%d")
+            + timedelta(days=-7)
         ).strftime("%Y-%m-%d")
 
     def test_1(self):
