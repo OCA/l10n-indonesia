@@ -30,7 +30,7 @@ class HrPayslip(models.Model):
             employee = payslip.employee_id
             if employee.joining_tax_year_id == payslip.tax_year_id:
                 payslip.joining_tax_month = datetime.strptime(
-                    employee.joining_tax_period_id.date_start, "%Y-%m-%d"
+                    str(employee.joining_tax_period_id.date_start), "%Y-%m-%d"
                 ).month
 
     joining_tax_month = fields.Integer(

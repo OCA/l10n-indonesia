@@ -17,7 +17,9 @@ class TaxPeriodCase(TransactionCase):
         self.demo_year = self.env.ref("l10n_id_taxform_period.data_tax_year")
 
     def test_create_year(self):
-        next_year = datetime.strptime(self.demo_year.date_start, "%Y-%m-%d").year + 1
+        next_year = (
+            datetime.strptime(str(self.demo_year.date_start), "%Y-%m-%d").year + 1
+        )
         date_start_year = datetime(next_year, 1, 1)
         date_end_year = datetime(next_year, 12, 31)
         date_end_period = datetime(next_year, 1, 31)
