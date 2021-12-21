@@ -25,7 +25,7 @@ class TestComputePayslipTaxPeriod(TransactionCase):
         self.rule_4 = self.env.ref("payroll.hr_salary_rule_providentfund1")
         self.rule_5 = self.env.ref("payroll.hr_salary_rule_meal_voucher")
         self.rule_6 = self.env.ref("payroll.hr_salary_rule_sales_commission")
-        self.type = self.env.ref("hr_contract.hr_contract_type_emp")
+        # self.type = self.env.ref("hr_contract.hr_contract_type_emp")
         self.resource = self.env.ref("resource.timesheet_group1")
         self.employee = self._create_employee()
         self.struct = self._create_structure()
@@ -73,7 +73,7 @@ class TestComputePayslipTaxPeriod(TransactionCase):
             "date_start": time.strftime("%Y-%m") + "-1",
             "date_end": time.strftime("%Y") + "-12-31",
             "wage": 7500000.0,
-            "type_id": self.type.id,
+            # "type_id": self.type.id,
             "employee_id": self.employee.id,
             "struct_id": self.struct.id,
             "working_hours": self.resource.id,
