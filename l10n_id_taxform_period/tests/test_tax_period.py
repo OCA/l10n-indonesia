@@ -20,9 +20,9 @@ class TaxPeriodCase(TransactionCase):
         next_year = (
             datetime.strptime(str(self.demo_year.date_start), "%Y-%m-%d").year + 1
         )
-        date_start_year = datetime(next_year, 1, 1)
+        date_start_year = datetime(next_year, 01, 01)
         date_end_year = datetime(next_year, 12, 31)
-        date_end_period = datetime(next_year, 1, 31)
+        date_end_period = datetime(next_year, 01, 31)
         # User create Tax Year
         tax_year = self.obj_year.create(
             {
