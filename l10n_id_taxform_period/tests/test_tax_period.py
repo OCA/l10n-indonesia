@@ -4,7 +4,7 @@
 from datetime import datetime
 
 from dateutil import relativedelta
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TaxPeriodCase(TransactionCase):

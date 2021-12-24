@@ -50,7 +50,6 @@
     <field name="name">Tax Years</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">l10n_id.tax_year</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
 </record>
 
@@ -96,7 +95,6 @@
     <field name="name">Tax Periods</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">l10n_id.tax_period</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
 </record>
 
