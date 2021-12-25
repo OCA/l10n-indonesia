@@ -43,7 +43,7 @@ class TaxPeriodCase(TransactionCase):
                 ),
             )
             self.assertEqual(
-                tax_year.period_ids[month].date_end,
+                tax_year.period_ids[month].date_end.strftime("%Y-%m-%d"),
                 (date_end_period + relativedelta.relativedelta(months=+month)).strftime(
                     "%Y-%m-%d"
                 ),
