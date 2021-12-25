@@ -14,7 +14,7 @@ class TaxPeriodCase(TransactionCase):
 
         self.obj_period = self.env["l10n_id.tax_period"]
         self.obj_year = self.env["l10n_id.tax_year"]
-        self.demo_year = self.env.ref("l10n_id_taxform_period.data_tyax_year")
+        self.demo_year = self.env.ref("l10n_id_taxform_period.data_tax_year")
 
     def test_create_year(self):
         next_year = (
