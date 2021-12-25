@@ -4,6 +4,7 @@
 from datetime import datetime
 
 from dateutil import relativedelta
+
 from odoo.tests.common import TransactionCase
 
 
@@ -13,10 +14,12 @@ class TaxPeriodCase(TransactionCase):
 
         self.obj_period = self.env["l10n_id.tax_period"]
         self.obj_year = self.env["l10n_id.tax_year"]
-        self.demo_year = self.env.ref("l10n_id_taxform_period.data_tax_year")
+        self.demo_year = self.env.ref("l10n_id_taxform_period.data_tyax_year")
 
     def test_create_year(self):
-        next_year = datetime.strptime(str(self.demo_year.date_start), "%Y-%m-%d").year + 1
+        next_year = (
+            datetime.strptime(str(self.demo_year.date_start), "%Y-%m-%d").year + 1
+        )
         date_start_year = datetime(next_year, 1, 1)
         date_end_year = datetime(next_year, 12, 31)
         date_end_period = datetime(next_year, 1, 31)
@@ -34,7 +37,7 @@ class TaxPeriodCase(TransactionCase):
         # Assert date_start and date_end periods that created
         for month in range(0, 12):
             self.assertEqual(
-                tax_year.period_ids[month].date_start,
+                tax_year.period_ids[month].date_start.strftime("%Y-%m-%d"),
                 (date_start_year + relativedelta.relativedelta(months=+month)).strftime(
                     "%Y-%m-%d"
                 ),
