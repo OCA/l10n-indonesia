@@ -1,0 +1,12 @@
+According to the Indonesian Tax Law, there are PTKP (Penghasilan Tidak Kena Pajak), such as :
+- TK/0
+- TK/1
+- TK/2
+- K/0
+- K/1
+- K/2
+- K/3
+- K/I/0
+- K/I/1
+- K/I/2
+- K/I/3
