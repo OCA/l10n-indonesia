@@ -67,15 +67,11 @@ class ResCurrencyRateProviderBI(models.Model):
         if self.service != "BI":
             return super()._get_supported_currencies()
 
-        # Start with currencies that BI publishes rates for
-        supported = BI_SUPPORTED_CURRENCIES.copy()
-
-        # If company base is not IDR, add IDR to supported list
-        # This allows selecting IDR to get its rate when base is foreign (e.g., USD)
-        if self.company_id.currency_id.name != "IDR":
-            supported.append("IDR")
-
-        return supported
+        if self.company_id.currency_id.name == "IDR":
+            # IDR base: BI publishes direct rates for all these currencies
+            return BI_SUPPORTED_CURRENCIES.copy()
+        # Foreign base (e.g. USD): BI only provides a direct IDR rate
+        return ["IDR"]
 
     def _obtain_rates(self, base_currency, currencies, date_from, date_to):
         self.ensure_one()
@@ -83,7 +79,23 @@ class ResCurrencyRateProviderBI(models.Model):
             return super()._obtain_rates(base_currency, currencies, date_from, date_to)
 
         # Determine which currencies to fetch from BI
-        fetch_currencies = self._get_currencies_to_fetch(base_currency, currencies)
+        if base_currency == "IDR":
+            fetch_currencies = [c for c in currencies if c in BI_SUPPORTED_CURRENCIES]
+        elif base_currency in BI_SUPPORTED_CURRENCIES:
+            # Foreign base: only fetch the base currency to get its IDR rate
+            fetch_currencies = [base_currency]
+        else:
+            raise UserError(
+                _(
+                    "Bank Indonesia provider: Company base currency %(currency)s "
+                    "is not supported. BI supports IDR as base or any of: %(list)s"
+                )
+                % {
+                    "currency": base_currency,
+                    "list": ", ".join(BI_SUPPORTED_CURRENCIES),
+                }
+            )
+
         if not fetch_currencies:
             return {}
 
@@ -94,15 +106,6 @@ class ResCurrencyRateProviderBI(models.Model):
 
         # Convert to Odoo format based on base currency
         return self._convert_bi_rates_to_odoo(rates_by_date, base_currency)
-
-    def _get_currencies_to_fetch(self, base_currency, currencies):
-        """Determine which currencies need to be fetched from BI."""
-        fetch_currencies = [c for c in currencies if c in BI_SUPPORTED_CURRENCIES]
-        # If company base is not IDR but is in BI's list, we need it for cross-rate calc
-        if base_currency in BI_SUPPORTED_CURRENCIES and base_currency != "IDR":
-            if base_currency not in fetch_currencies:
-                fetch_currencies.append(base_currency)
-        return fetch_currencies
 
     def _fetch_bi_rates(self, fetch_currencies, date_from, date_to):
         """Fetch exchange rates from BI webservice for given currencies."""
@@ -142,59 +145,24 @@ class ResCurrencyRateProviderBI(models.Model):
         """Convert BI rates to Odoo format based on base currency.
 
         BI publishes: X IDR per 1 foreign currency (e.g. 16826 IDR/USD)
-        Odoo _process_rate expects: {"inverted": X} where X = IDR per 1 foreign
-        _process_rate will compute: direct = 1/X (foreign per 1 IDR, used as rate)
+
+        IDR base: pass {"inverted": X} so _process_rate computes 1/X
+        Foreign base (e.g. USD): BI gives IDR/USD = 16826, which is the
+            direct IDR rate (16826 IDR per 1 USD), returned as plain float.
         """
-        if base_currency == "IDR":
-            return self._convert_idr_base_rates(rates_by_date)
-        elif base_currency in BI_SUPPORTED_CURRENCIES:
-            return self._convert_foreign_base_rates(rates_by_date, base_currency)
-        else:
-            raise UserError(
-                _(
-                    "Bank Indonesia provider: Company base currency %(currency)s "
-                    "is not supported. BI supports IDR as base or any of: %(list)s"
-                )
-                % {
-                    "currency": base_currency,
-                    "list": ", ".join(BI_SUPPORTED_CURRENCIES),
-                }
-            )
-
-    def _convert_idr_base_rates(self, rates_by_date):
-        """Convert rates for IDR base currency."""
         content = {}
         for date_str, rates in rates_by_date.items():
             content[date_str] = {}
             for curr, rate_idr in rates.items():
-                # rate_idr = IDR per 1 unit of `curr` (e.g. 16826 for USD)
-                # Odoo stores "foreign per 1 base" => rate_usd = 1/16826
-                # We pass {"inverted": 16826} so _process_rate computes 1/16826
-                content[date_str][curr] = {"inverted": rate_idr}
-        return content
-
-    def _convert_foreign_base_rates(self, rates_by_date, base_currency):
-        """Convert rates for foreign base currency using cross-rates."""
-        content = {}
-        for date_str, rates in rates_by_date.items():
-            if base_currency not in rates:
-                # Skip dates where base currency rate is missing
-                continue
-            base_idr = rates[base_currency]  # IDR per 1 base currency
-            content[date_str] = {}
-            for curr, rate_idr in rates.items():
-                if curr == base_currency:
-                    continue
-                # Cross rate: foreign per 1 base = (IDR/base) / (IDR/foreign)
-                # = rate_idr_base / rate_idr_foreign
-                # e.g. EUR/USD = (IDR/USD) / (IDR/EUR) = 16826 / 18500 ≈ 0.9095
-                cross_rate = base_idr / rate_idr
-                content[date_str][curr] = cross_rate
-
-            # Add IDR rate if needed
-            # When base is USD and BI provides 16826 IDR/USD,
-            # the rate is simply 16826 (direct rate: IDR per 1 USD)
-            content[date_str]["IDR"] = base_idr
+                if base_currency == "IDR":
+                    # rate_idr = IDR per 1 unit of `curr` (e.g. 16826 for USD)
+                    # Pass as inverted so _process_rate computes 1/16826
+                    content[date_str][curr] = {"inverted": rate_idr}
+                else:
+                    # Foreign base: curr == base_currency (e.g. USD)
+                    # rate_idr = IDR per 1 base unit (e.g. 16826 IDR/USD)
+                    # Return as IDR rate (direct: 16826 IDR per 1 USD)
+                    content[date_str]["IDR"] = rate_idr
         return content
 
     def _parse_bi_response(self, xml_data, expected_currency):
