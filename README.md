@@ -17,7 +17,11 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[currency_rate_update_bi](currency_rate_update_bi/) | 16.0.1.0.0 | <a href='https://github.com/hitrosol'><img src='https://github.com/hitrosol.png' width='32' height='32' style='border-radius:50%;' alt='hitrosol'/></a> | Update exchange rates using Bank Indonesia (BI) official rates
 
 [//]: # (end addons)
 

@@ -8,7 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-indonesia Odoo addons",
     version=version,
     install_requires=[
-        'odoo-addon-currency_rate_update_BI>=16.0dev,<16.1dev',
+        'odoo-addon-currency_rate_update_bi>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
