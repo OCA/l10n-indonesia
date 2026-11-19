@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="online_bank_statement_provider_form" model="ir.ui.view">
+        <field name="model">online.bank.statement.provider</field>
+        <field
+            name="inherit_id"
+            ref="account_statement_import_online.online_bank_statement_provider_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_snap_test_connection"
+                    type="object"
+                    string="Test Connection"
+                    invisible="not snap_is_snap"
+                />
+                <button
+                    name="action_snap_test_token"
+                    type="object"
+                    string="Test Token"
+                    invisible="not snap_is_snap or not snap_client_key"
+                    groups="account.group_account_manager"
+                />
+                <button
+                    name="action_generate_key_pair"
+                    type="object"
+                    string="Generate Key Pair"
+                    invisible="not snap_is_snap or snap_public_key"
+                    groups="account.group_account_manager"
+                />
+                <button
+                    name="action_generate_key_pair"
+                    type="object"
+                    string="Regenerate Key Pair"
+                    invisible="not snap_is_snap or not snap_public_key"
+                    context="{'snap_confirm_regenerate': True}"
+                    confirm="Replace the key pair? The bank must receive the new public key before API calls work again, for every provider using this application."
+                    groups="account.group_account_manager"
+                />
+                <button
+                    name="action_download_public_key"
+                    type="object"
+                    string="Download Public Key"
+                    invisible="not snap_is_snap or not snap_public_key"
+                    groups="account.group_account_manager"
+                />
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook invisible="not snap_is_snap">
+                    <page
+                        name="snap"
+                        string="SNAP"
+                        groups="account.group_account_manager"
+                    >
+                        <group>
+                            <group name="snap_bank" string="Bank API">
+                                <field name="snap_environment" />
+                                <field name="snap_base_url" />
+                                <field name="snap_partner_id" />
+                                <field name="snap_channel_id" />
+                            </group>
+                            <group name="snap_client" string="Application">
+                                <field name="snap_client_key" />
+                                <field name="snap_client_secret" password="True" />
+                            </group>
+                        </group>
+                        <group name="snap_keys" string="RSA Keys">
+                            <field
+                                name="snap_private_key_file"
+                                help="Upload the PEM private key file given by the bank."
+                            />
+                            <field
+                                name="snap_private_key"
+                                password="True"
+                                placeholder="-----BEGIN PRIVATE KEY----- ..."
+                            />
+                            <field name="snap_public_key" />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
